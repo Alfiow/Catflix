@@ -73,3 +73,11 @@ export const fetchImage = () => async (dispatch, getState) => {
   }
 };
 
+// Change image to tne next one
+export const changeImage = () => (dispatch, getState) => {
+  dispatch({ type: 'CHANGE_IMAGE' });
+  // Fetch more images if needed
+  if (getState().next.length < PREFETCH_IMAGES) {
+    dispatch(fetchImage());
+  }
+};
