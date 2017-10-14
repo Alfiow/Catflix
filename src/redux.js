@@ -51,3 +51,25 @@ export const reducer = (state = initialState, action) => {
       return state;
   }
 };
+
+// Fetch next random image action
+export const fetchImage = () => async (dispatch, getState) => {
+  // Make API call and dispatch appropriate actions when done
+  try {
+    const response = await fetch(`${API}/gif`);
+    dispatch({
+      type: 'IMAGE_LOADED',
+      data: await response.json(),
+    });
+    // Fetch more images if needed
+    if (getState().next.length < PREFETCH_IMAGES) {
+      dispatch(fetchImage());
+    }
+  } catch (error) {
+    dispatch({
+      type: 'ERROR',
+      error
+    })
+  }
+};
+
