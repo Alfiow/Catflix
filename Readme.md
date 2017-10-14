@@ -1,2 +1,2 @@
-Latihan projek sekaligus belajar git
+***Projek ini saya tiru dari tutorial ATM dahulu
 
