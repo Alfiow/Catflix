@@ -21,7 +21,7 @@ const server = app.listen(3000, () => {
 
 // Fetch random GIF url with Giphy API, download and Base64 encode it
 export const fetchGif = async () => {
-  const item = await giphyapi().random('cat');
+  const item = await giphyapi().random('horse');
   return await encode(await download(item.data.image_url));
 };
 
@@ -33,6 +33,7 @@ const download = async (url) => {
       resolve(res);
     });
     req.on('error', err => {
+      
       reject(err);
     });
   });

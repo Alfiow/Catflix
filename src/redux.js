@@ -8,9 +8,9 @@ const PREFETCH_IMAGES = 5;
 // API URL
 const API = Platform.OS === 'android'
   ? 'http://10.0.3.2:3000' // Localhost ip address when running on Android (Genymotion)
-  : 'http://localhost:3000';
+  : 'http://211.11.1.231:3000';
 
-// initial state
+// Initial state
 export const initialState = {
   image: null,
   next: [],
@@ -18,6 +18,7 @@ export const initialState = {
 
 // Reducer
 export const reducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     // Handle API response with data object that looks like { gif: 'data:image/gif;base64,...' }
     case 'IMAGE_LOADED':
@@ -69,9 +70,12 @@ export const fetchImage = () => async (dispatch, getState) => {
     dispatch({
       type: 'ERROR',
       error
-    })
+    });
   }
 };
+
+// export const fetchImage = API;
+// axios.get(fetchImage).then(response => console.log(response));
 
 // Change image to tne next one
 export const changeImage = () => (dispatch, getState) => {
